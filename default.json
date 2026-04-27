@@ -1,0 +1,48 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "rebaseWhen": "conflicted",
+  "schedule": ["before 5am"],
+  "postUpdateOptions": ["pnpmDedupe"],
+  "prConcurrentLimit": 5,
+  "packageRules": [
+    {
+      "labels": ["📦 deps", "🤖 bot"],
+      "matchPackageNames": ["*"]
+    },
+    {
+      "labels": ["⚠️ major", "📦 deps", "🤖 bot"],
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "groupName": "non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchDepTypes": [
+        "dependencies",
+        "peerDependencies",
+        "optionalDependencies"
+      ],
+      "matchPackageNames": ["*"]
+    },
+    {
+      "groupName": "non-major dev dependencies",
+      "groupSlug": "all-minor-patch-dev",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchDepTypes": ["devDependencies"],
+      "matchPackageNames": ["*"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "pinDigests": false,
+      "rangeStrategy": "replace"
+    },
+    {
+      "description": "Don't bump engines field in package.json",
+      "matchPackageNames": ["node", "pnpm"],
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["engines"],
+      "rangeStrategy": "auto"
+    }
+  ]
+}
