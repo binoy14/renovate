@@ -3,6 +3,7 @@
   "extends": ["config:recommended"],
   "rebaseWhen": "conflicted",
   "schedule": ["before 5am"],
+  "rangeStrategy": "bump",
   "postUpdateOptions": ["pnpmDedupe"],
   "prConcurrentLimit": 5,
   "packageRules": [
