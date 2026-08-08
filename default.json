@@ -1,49 +1,88 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "rebaseWhen": "conflicted",
-  "schedule": ["before 5am"],
-  "rangeStrategy": "bump",
-  "postUpdateOptions": ["pnpmDedupe"],
-  "prConcurrentLimit": 5,
+  "extends": [
+    "config:recommended"
+  ],
+  "minimumReleaseAge": "3 days",
   "packageRules": [
     {
-      "labels": ["📦 deps", "🤖 bot"],
-      "matchPackageNames": ["*"]
+      "labels": [
+        "📦 deps",
+        "🤖 bot"
+      ],
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
-      "labels": ["⚠️ major", "📦 deps", "🤖 bot"],
-      "matchUpdateTypes": ["major"]
+      "labels": [
+        "⚠️ major",
+        "📦 deps",
+        "🤖 bot"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ]
     },
     {
       "groupName": "non-major dependencies",
       "groupSlug": "all-minor-patch",
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "matchDepTypes": [
         "dependencies",
         "peerDependencies",
         "optionalDependencies"
       ],
-      "matchPackageNames": ["*"]
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
       "groupName": "non-major dev dependencies",
       "groupSlug": "all-minor-patch-dev",
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchDepTypes": ["devDependencies"],
-      "matchPackageNames": ["*"]
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchPackageNames": [
+        "*"
+      ]
     },
     {
-      "matchManagers": ["github-actions"],
+      "matchManagers": [
+        "github-actions"
+      ],
       "pinDigests": false,
       "rangeStrategy": "replace"
     },
     {
       "description": "Don't bump engines field in package.json",
-      "matchPackageNames": ["node", "pnpm"],
-      "matchManagers": ["npm"],
-      "matchDepTypes": ["engines"],
+      "matchPackageNames": [
+        "node",
+        "pnpm"
+      ],
+      "matchManagers": [
+        "npm"
+      ],
+      "matchDepTypes": [
+        "engines"
+      ],
       "rangeStrategy": "auto"
     }
+  ],
+  "postUpdateOptions": [
+    "pnpmDedupe"
+  ],
+  "prConcurrentLimit": 5,
+  "rangeStrategy": "bump",
+  "rebaseWhen": "conflicted",
+  "schedule": [
+    "before 5am"
   ]
 }
