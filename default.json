@@ -3,6 +3,7 @@
   "extends": [
     "config:recommended"
   ],
+  "reviewers": ["binoy14"]
   "minimumReleaseAge": "3 days",
   "packageRules": [
     {
